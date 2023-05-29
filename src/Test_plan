@@ -1,0 +1,44 @@
+Planning for fireTorpedo() method in GT4500 
+
+Given specification:
+/**
+  * Tries to fire the torpedo stores of the ship.
+  *
+  * @param firingMode how many torpedo bays to fire
+  * 	SINGLE: fires only one of the bays.
+  * 			- For the first time the primary store is fired.
+  * 			- To give some cooling time to the torpedo stores, torpedo stores are fired alternating.
+  * 			- But if the store next in line is empty, the ship tries to fire the other store.
+  * 			- If the fired store reports a failure, the ship does not try to fire the other one.
+  * 	ALL:	tries to fire both of the torpedo stores.
+  *
+  * @return whether at least one torpedo was fired successfully
+  */
+
+     Test 1
+  - given values: the primary store is fired, reports failure
+  - expected behaviour: ship does not try to fire the secondary
+
+    Test 2
+  - given values: the primary store is fired, the secondary store is empty
+  - expected behaviour: the primary is fired again
+
+    Test 3
+  - given values: the primary store is fired, the secondary store is fired
+  - expected behaviour: the primary is fired again
+
+    Test 4
+  - given values: the primary store is fired, the secondary store is fired and both of them is fired unsuccessfully
+  - expected behaviour: the firing is unsuccessful
+
+    Test 5
+  - given values: tries to fire both of the torpedo stores and the secondary is successful
+  - expected behaviour: the firing is successful in both cases
+    
+---
+
+    Test 6 (from code)
+  - given values:  SINGLE, the primary is empty
+  - expected behaviour: the secondary is fired
+
+Conclusion: it is more difficult to understand the context of the test case. The focus is on testing the code lines not on the actual expected funcionality from the game's view.
